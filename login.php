@@ -21,12 +21,12 @@ if (isset($_SESSION["user"])) {
             if (isset($_POST["login"])) {
                 require_once "database.php";
                 
-                $User_ID = $_POST["User_ID"];
+                $user_id = $_POST["user_id"];
                 $password = $_POST["password"];
                 
-                $sql = "SELECT * FROM users WHERE User_ID = ?";
+                $sql = "SELECT * FROM users WHERE user_id = ?";
                 $stmt = mysqli_prepare($conn, $sql);
-                mysqli_stmt_bind_param($stmt, "s", $User_ID);
+                mysqli_stmt_bind_param($stmt, "s", $user_id);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
                 $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -46,7 +46,7 @@ if (isset($_SESSION["user"])) {
         ?>
         <form method="POST"> <!-- 🔴 FIXED: Added method="POST" -->
             <div class="form-group">
-                <input type="number" class="form-control" name="User_ID" placeholder="User_ID" required>
+                <input type="number" class="form-control" name="user_id" placeholder="user_id" required>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" name="password" placeholder="Password:" required>
