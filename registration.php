@@ -13,7 +13,7 @@
     <div class="container">
         <?php
             if(isset($_POST["submit"])){
-                $User_ID=$_POST["User_ID"];
+                $user_id=$_POST["user_id"];
                 $fullname=$_POST["fullname"];
                 $email=$_POST["email"];
                 $phone_No=$_POST["Phone_No"];
@@ -22,7 +22,7 @@
                 $passwordHash= password_hash($password, PASSWORD_DEFAULT);
 
                 $errors=array();
-                if(empty($User_ID) OR empty($fullname) OR empty($email) OR empty($phone_No) OR empty($password)){
+                if(empty($user_id) OR empty($fullname) OR empty($email) OR empty($phone_No) OR empty($password)){
                     array_push($errors, "All fields are required");
                 }
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -39,11 +39,11 @@
                 }
                 else{
                     require_once "database.php";
-                    $sql= "INSERT INTO users (user_ID, fullname, email, phone, password) VALUES ( ?, ?, ?, ?, ? )";
+                    $sql= "INSERT INTO users (user_id, fullname, email, phone, password) VALUES ( ?, ?, ?, ?, ? )";
                     $stmt= mysqli_stmt_init($conn);
                     $prepareStmt = mysqli_stmt_prepare($stmt,$sql);
                     if ($prepareStmt) {
-                        mysqli_stmt_bind_param($stmt,"issis", $User_ID, $fullname, $email, $phone_No, $passwordHash);
+                        mysqli_stmt_bind_param($stmt,"issis", $user_id, $fullname, $email, $phone_No, $passwordHash);
                         mysqli_stmt_execute($stmt);
                         echo "<div class='alert alert-success'>You are registered successfully.</div>";
                     }else{
@@ -54,7 +54,7 @@
         ?>
         <form action="registration.php" method="post">
             <div class="form-group">
-                <input type="number" class="form-control" name="User_ID" placeholder="User_ID">
+                <input type="number" class="form-control" name="user_id" placeholder="user_id">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="fullname" placeholder="Full Name:">
