@@ -31,8 +31,8 @@ include 'database.php';
                     <td>".$row['email']."</td>
                     <td>".$row['phone']."</td>
                     <td>
-                        <a href='edit.php?User_id=".$row['user_id']."'>Edit</a> | 
-                        <a href='delete.php?User_id=".$row['user_id']."' onclick='return confirm(\"Are you sure?\")'>Delete</a>
+                        <a href='edit.php?user_id=".$row['user_id']."'>Edit</a> | 
+                        <a href='delete.php?user_id=".$row['user_id']."' onclick='return confirm(\"Are you sure?\")'>Delete</a>
                     </td>
                 </tr>";
         }
